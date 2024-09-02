@@ -9,10 +9,12 @@ public class Player : MonoBehaviour
     public float JumpForce;
     public bool isJumping;
     public bool doubleJumping;
+    private Animator anime;
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        anime = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,17 @@ public class Player : MonoBehaviour
     {
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * Speed;
+        if(Input.GetAxis("Horizontal")> 0f){
+        anime.SetBool("walk", true);
+        transform.eulerAngles = new Vector3(0f,0f,0f);
+        }
+          if(Input.GetAxis("Horizontal")< 0f){
+        anime.SetBool("walk", true);
+        transform.eulerAngles = new Vector3(0f,180f,0f);
+        }
+         if(Input.GetAxis("Horizontal") == 0f){
+        anime.SetBool("walk", false);
+        }
     }
     void Jump()
     {
@@ -35,11 +48,13 @@ public class Player : MonoBehaviour
          {
             rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
             doubleJumping = true;
+            anime.SetBool("jump", true);
          }
             else{
                 if(doubleJumping){
                      rig.AddForce(new Vector2(0f, JumpForce * 1.5f), ForceMode2D.Impulse);
                      doubleJumping = false;
+                     anime.SetBool("jump", false);
                 }
 
             }
