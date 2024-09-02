@@ -20,8 +20,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
         Jump();
+    }
+    private void FixedUpdate(){
+        Move();
     }
 
     void Move()
@@ -65,6 +67,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.layer == 8)
         {
            isJumping  = false;
+           anime.SetBool("jump", false);
         }
     }
      void OnCollisionExit2D(Collision2D collision)
