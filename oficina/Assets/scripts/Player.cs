@@ -71,8 +71,8 @@ public class Player : MonoBehaviour
         }
         if(collision.gameObject.tag == "spike")
         {
-           isJumping  = false;
-           anime.SetBool("jump", false);
+           GameController.instance.ShowGameOver();
+           Destroy(gameObject);
         }
     }
      void OnCollisionExit2D(Collision2D collision)
