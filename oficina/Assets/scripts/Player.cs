@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
          }
             else{
                 if(doubleJumping){
-                     rig.AddForce(new Vector2(0f, JumpForce * 1.5f), ForceMode2D.Impulse);
+                     rig.AddForce(new Vector2(0f, JumpForce * 0.9f), ForceMode2D.Impulse);
                      doubleJumping = false;
                      anime.SetBool("jump", false);
                 }
@@ -65,6 +65,11 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.layer == 8)
+        {
+           isJumping  = false;
+           anime.SetBool("jump", false);
+        }
+        if(collision.gameObject.tag == "spike")
         {
            isJumping  = false;
            anime.SetBool("jump", false);

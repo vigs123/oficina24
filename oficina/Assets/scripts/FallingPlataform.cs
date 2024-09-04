@@ -21,10 +21,18 @@ public class FallingPlataform : MonoBehaviour
         {
            Invoke("Falling", fallingTime);
         }
+        
+        }
+        void OnTriggerEnter2D(Collider2D collider)
+    {
+            if(collider.gameObject.layer == 6)
+        {
+           Destroy(gameObject);
+        }
     }
     void Falling()
     {
-        target.enableCollision = false;
+        target.enabled = false;
         box.isTrigger = true;
     }
 }
