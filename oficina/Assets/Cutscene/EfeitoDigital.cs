@@ -15,20 +15,27 @@ public class EfeitoDigital : MonoBehaviour
     {
         TryGetComponent(out compTexto);
         TryGetComponent(out audio);
-        mensagem = compTexto.text;
+        mensagem = compTexto.text; 
         compTexto.text = "";
 
     }
     private void OnEnable()
     {
-         compTexto.text = mensagem;
+         imprimirMensagem(mensagem);
     }
     private void OnDisable()
     {
-
+        compTexto.text = mensagem;
+        StopAllCoroutines();
     }
     public void imprimirMensagem(string m)
     {
+        if(gameObject.activeInHierarchy)
+        {
+        if(imprimindo) return;
+        imprimindo = true;
+        StartCoroutine(Letra(m));
+        }
 
     }
     IEnumerator Letra(string m)
