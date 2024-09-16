@@ -1403,7 +1403,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 816987103137463175, guid: e7dd55ee1750aeb438a967abf51a81b4, type: 3}
       propertyPath: lvlName
-      value: fase_3
+      value: fase_1
       objectReference: {fileID: 0}
     - target: {fileID: 1159734976676476464, guid: e7dd55ee1750aeb438a967abf51a81b4, type: 3}
       propertyPath: m_Name
